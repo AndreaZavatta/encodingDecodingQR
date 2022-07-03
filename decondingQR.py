@@ -1,8 +1,12 @@
-from pyzbar.pyzbar import decode
-from PIL import Image
+import webbrowser
+import zxing as zxing
 
-img = Image.open('C:/Users/Utente/Desktop/encodingDecodingQR/qrImage/myqrcode.png')
 
-result = decode(img)
-
-print(result)
+def decode():
+    reader = zxing.BarCodeReader()
+    url = reader.decode("C:/Users/Utente/Desktop/encodingDecodingQR/qrImage/myqrcode.png").raw
+    webbrowser.register('chrome',
+                        None,
+                        webbrowser.BackgroundBrowser(
+                            "C://Program Files (x86)//Google//Chrome//Application//chrome.exe"))
+    webbrowser.get('chrome').open(url)
